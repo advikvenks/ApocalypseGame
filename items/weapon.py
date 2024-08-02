@@ -1,6 +1,6 @@
-import item
+from .item import Item
 
-class Weapon(item.Item):
+class Weapon(Item):
     def __init__(self, name, owner, weight, durability, damage):
         super().__init__('weapon', name, owner, weight, durability)
         self.__damage = damage
@@ -12,4 +12,4 @@ class Weapon(item.Item):
         target.damage(self.__damage)
 
     def __str__(self):
-        return f'{super()} - {self.damage()} damage'
+        return f'{super().__str__()} - {self.damage()} damage'

@@ -1,7 +1,8 @@
 from items.itemHandler import ItemHandler
+from characters.characterHandler import CharacterHandler
 
 def main():
-    sword = ItemHandler.create_item('weapon', name='sword', owner='me', weight='10', durability='100/100', damage='100')
+    sword = CharacterHandler.create_character('zombie', 100, damage=20)
     print(sword)
 
 if __name__ == '__main__':

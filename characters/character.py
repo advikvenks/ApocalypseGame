@@ -15,3 +15,6 @@ class Character():
 
     def heal(self, healAmount):
         self.__health += healAmount
+    
+    def health(self):
+        return self.__health

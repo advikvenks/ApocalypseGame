@@ -1,5 +1,5 @@
 class Item():
-    VALID_ITEM_TYPES = ['weapon', 'defense', 'consumable']
+    VALID_ITEM_TYPES = ['weapon', 'consumable']
 
     def __init__(self, category, name, owner, weight, durability):
         if category not in self.VALID_ITEM_TYPES:

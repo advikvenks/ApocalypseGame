@@ -1,6 +1,6 @@
-import item
+from .item import Item
 
-class Consumable(item.Item):
+class Consumable(Item):
     def __init__(self, name, owner, weight, durability, heal):
         super().__init__('consumable', name, owner, weight, durability)
         self.__heal = heal
