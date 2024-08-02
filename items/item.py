@@ -10,9 +10,12 @@ class Item():
         self.__weight = weight
         self.__durability = durability
 
-    def type(self):
+    def category(self):
         return self.__category
     
+    def name(self):
+        return self.__name
+
     def owner(self):
         return self.__owner
     
