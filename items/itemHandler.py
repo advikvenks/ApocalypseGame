@@ -2,6 +2,7 @@ from .weapon import Weapon
 from .consumable import Consumable
 
 class ItemHandler:
+    @staticmethod
     def create_item(category, name, owner, weight, durability, **kwargs) :
         if category == 'weapon':
             return Weapon(name, owner, weight, durability, kwargs['damage'])
