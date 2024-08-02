@@ -1,3 +1,8 @@
+from matplotlib import category
+
+from items.consumable import Consumable
+from items.item import Item
+from items.weapon import Weapon
 from .character import Character
 from items.itemHandler import ItemHandler
 
@@ -7,15 +12,24 @@ class Player(Character):
         self.__name = name
         self.__gender = gender
         self.__inventory = [[],[]]
-        for item_list in inventory:
-            if item_list != []:
-                if type(item_list) == type([]):
-                    item = ItemHandler.create_item(item_list)
-                    if item.category() == 'weapon':
+        for item in inventory:
+            if isinstance(item, list):
+                item = ItemHandler.create_item(*item)
+                if item is not None:
+                    category = item.category()
+                    if category == 'weapon':
                         self.__inventory[0].append(item)
-                    elif item.category() == 'consumable':
+                    elif category == 'consumable':
                         self.__inventory[1].append(item)
-
+                else:
+                    print("Invalid item")
+            elif isinstance(item, Weapon):
+                self.__inventory[0].append(item)
+            elif isinstance(item, Consumable):
+                self.__inventory[1].append(item)
+            else:
+                print("Invalid item type")
+                
     def name(self):
         return self.__name
     
@@ -23,34 +37,53 @@ class Player(Character):
         return self.__gender
     
     def add_item(self, item):
-        if type(item) == type([]):
-                item = ItemHandler.create_item(item)
-                if item.category() == 'weapon':
+        if isinstance(item, list):
+            item = ItemHandler.create_item(*item)
+            if item is not None:
+                category = item.category()
+                if category == 'weapon':
                     self.__inventory[0].append(item)
-                elif item.category() == 'consumable':
+                elif category == 'consumable':
                     self.__inventory[1].append(item)
+            else:
+                print("Invalid item")
+        elif isinstance(item, Weapon):
+            self.__inventory[0].append(item)
+        elif isinstance(item, Consumable):
+            self.__inventory[1].append(item)
         else:
-            if item.category() == 'weapon':
-                self.__inventory[0].append(item)
-            elif item.category() == 'consumable':
-                self.__inventory[1].append(item)
+            print("Invalid item type")
     
     def remove_item(self, item):
-        if type(item) == type([]):
-                item = ItemHandler.create_item(item)
-                if item.category() == 'weapon':
+        if isinstance(item, list):
+            item = ItemHandler.create_item(*item)
+            if item is not None:
+                category = item.category()
+                if category == 'weapon':
                     self.__inventory[0].remove(item)
-                elif item.category() == 'consumable':
+                elif category == 'consumable':
                     self.__inventory[1].remove(item)
+            else:
+                print("Invalid item")
+        elif isinstance(item, Weapon):
+            self.__inventory[0].remove(item)
+        elif isinstance(item, Consumable):
+            self.__inventory[1].remove(item)
         else:
-            if item.category() == 'weapon':
-                self.__inventory[0].remove(item)
-            elif item.category() == 'consumable':
-                self.__inventory[1].remove(item)
+            print("Invalid item type")
     
     def use_weapon(self, weapon, target):
         if weapon in self.__inventory[0]:
             weapon.use(target)
     
     def __str__(self):
-        return f'{self.__name} - Health: {super().health()}, Gender: {self.__gender}, Inventory: {self.__inventory}'
+        names_inventory = []
+
+        for sublist in self.__inventory:
+            names_sublist = []
+            for item in sublist:
+                if isinstance(item, Item):
+                    names_sublist.append(item.name())
+            names_inventory.append(names_sublist)
+
+        return f'{self.__name} - Health: {super().health()}, Gender: {self.__gender}, Inventory: {names_inventory}'
