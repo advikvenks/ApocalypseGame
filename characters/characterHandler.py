@@ -8,3 +8,4 @@ class CharacterHandler():
             return Player(kwargs['name'], kwargs['gender'], kwargs['inventory'], health)
         elif category == 'zombie':
             return Zombie(health, kwargs['damage'])
+        

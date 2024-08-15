@@ -18,3 +18,6 @@ class Character():
     
     def health(self):
         return self.__health
+    
+    def setHealth(self, health):
+        self.__health = health

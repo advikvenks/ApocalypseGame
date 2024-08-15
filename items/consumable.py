@@ -5,7 +5,7 @@ class Consumable(Item):
         super().__init__('consumable', name, owner, weight, durability)
         self.__heal = heal
 
-    def heal(self):
+    def healAmount(self):
         return self.__heal
 
     def use(self, target):

@@ -1,5 +1,3 @@
-from matplotlib import category
-
 from items.consumable import Consumable
 from items.item import Item
 from items.weapon import Weapon
@@ -35,6 +33,9 @@ class Player(Character):
     
     def gender(self):
         return self.__gender
+    
+    def inventory(self):
+        return self.__inventory
     
     def add_item(self, item):
         if isinstance(item, list):
@@ -72,7 +73,7 @@ class Player(Character):
         else:
             print("Invalid item type")
     
-    def use_weapon(self, weapon, target):
+    def use_weapon(self, weapon: Weapon, target: Character):
         if weapon in self.__inventory[0]:
             weapon.use(target)
     
