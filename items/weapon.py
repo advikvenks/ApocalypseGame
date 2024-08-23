@@ -10,13 +10,8 @@ class Weapon(Item):
         return self.__damage
 
     def use(self, target: Character):
+        super().use()
         target.damage(self.__damage)
-        self.__durability -= 1
-        if self.__durability > 0:
-            self.__durability -= 1
-            print(f'{self.__name} was used by {self.__owner}')
-        else:
-            print(f'{self.__name} is broken')
 
     def __str__(self):
         return f'{super().__str__()} - {self.damage()} damage'

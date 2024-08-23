@@ -37,45 +37,31 @@ class Player(Character):
     def inventory(self):
         return self.__inventory
     
-    def add_item(self, item):
+    def add_or_remove_item(self, item, action):
         if isinstance(item, list):
             item = ItemHandler.create_item(*item)
-            if item is not None:
+        
+        if item is not None:
+            if  action == 'add':
                 category = item.category()
                 if category == 'weapon':
                     self.__inventory[0].append(item)
                 elif category == 'consumable':
                     self.__inventory[1].append(item)
-            else:
-                print("Invalid item")
-        elif isinstance(item, Weapon):
-            self.__inventory[0].append(item)
-        elif isinstance(item, Consumable):
-            self.__inventory[1].append(item)
-        else:
-            print("Invalid item type")
-    
-    def remove_item(self, item):
-        if isinstance(item, list):
-            item = ItemHandler.create_item(*item)
-            if item is not None:
+            if action == 'remove':
                 category = item.category()
                 if category == 'weapon':
                     self.__inventory[0].remove(item)
                 elif category == 'consumable':
                     self.__inventory[1].remove(item)
-            else:
-                print("Invalid item")
-        elif isinstance(item, Weapon):
-            self.__inventory[0].remove(item)
-        elif isinstance(item, Consumable):
-            self.__inventory[1].remove(item)
         else:
-            print("Invalid item type")
+            print("Invalid item")
+
+    def add_item(self, item):
+        self.add_or_remove_item(item, 'add')
     
-    def use_weapon(self, weapon: Weapon, target: Character):
-        if weapon in self.__inventory[0]:
-            weapon.use(target)
+    def remove_item(self, item):
+        self.add_or_remove_item(item, 'remove')
     
     def __str__(self):
         names_inventory = []

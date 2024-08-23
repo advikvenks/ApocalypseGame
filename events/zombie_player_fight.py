@@ -34,12 +34,12 @@ def FightLoop(player: Player, zombie: Zombie):
 
 def PlayerTurn(player: Player, zombie: Zombie):
     while True:
-        print('\n')
-        lore_text(zombie_vs_player['playerFight'])
-        print('\n')
-        lore_text(zombie_vs_player['fightOptions'])
-        print('\n')
         try:
+            print('\n')
+            lore_text(zombie_vs_player['playerFight'])
+            print('\n')
+            lore_text(zombie_vs_player['fightOptions'])
+            print('\n')
             choice = int(input())
             item_names = []
             if choice == 1:

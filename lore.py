@@ -1,5 +1,4 @@
 import time
-from characters.player import Player
 
 
 def lore_text(text, delay=0.03):

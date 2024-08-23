@@ -1,3 +1,4 @@
+from lore import lore_text
 class Item():
     VALID_ITEM_TYPES = ['weapon', 'consumable']
 
@@ -25,6 +26,18 @@ class Item():
     def durability(self):
         return self.__durability
     
+    def use(self):
+        from characters.player import Player
+        if isinstance(self.__owner, Player):
+            if self.__durability > 0:
+                self.__durability -= 1
+                if self.__durability == 0:
+                    lore_text(F'{self.__name} is now broken')
+                    self.__owner.remove_item(self)
+            else:
+                lore_text(f'{self.__name} is broken')
+                print('')
+                self.__owner.remove_item(self)
     
     def __str__(self):
         return f'{self.__name} - Owned by {self.__owner}, Item type: {self.__category}, Weight: {self.__weight}, Durability: {self.__durability}'
