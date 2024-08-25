@@ -32,7 +32,8 @@ class Item():
             if self.__durability > 0:
                 self.__durability -= 1
                 if self.__durability == 0:
-                    lore_text(F'{self.__name} is now broken')
+                    lore_text(F'{self.__name} was used and is now broken')
+                    print('')
                     self.__owner.remove_item(self)
             else:
                 lore_text(f'{self.__name} is broken')

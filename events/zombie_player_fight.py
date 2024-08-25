@@ -24,13 +24,34 @@ def AttemptRun(player: Player, zombie: Zombie):
 
 def FightLoop(player: Player, zombie: Zombie):
     while True:
-        PlayerTurn(player, zombie)
-        if zombie.health() <= 0:
-            return 'zombie_dead'
+        lore_text(zombie_vs_player['start'])
+        print('\n')
+        lore_text(zombie_vs_player['initialOptions'])
+        print('\n')
+        initialChoice = input()
+        if initialChoice == '1':
+            while True:
+                PlayerTurn(player, zombie)
+                if zombie.health() <= 0:
+                    return 'zombie_dead'
         
-        ZombieTurn(player, zombie)
-        if player.health() <= 0:
-            return 'dead'
+                ZombieTurn(player, zombie)
+                if player.health() <= 0:
+                    return 'dead'
+                
+                lore_text(zombie_vs_player['continue'])
+                lore_text(zombie_vs_player['continueOptions'])
+                choice = input()
+                if choice == '2':
+                    AttemptRun(player, zombie)
+                    break
+
+        elif initialChoice == '2':
+            AttemptRun(player, zombie)
+            break
+        else:
+            print('Please choose either 1 or 2.')
+    
 
 def PlayerTurn(player: Player, zombie: Zombie):
     while True:
@@ -98,21 +119,8 @@ def ZombieTurn(player: Player, zombie: Zombie):
         
 
 def ZombieVsPlayer(player: Player, zombie: Zombie):
-    while True:
-        lore_text(zombie_vs_player['start'])
-        print('\n')
-        lore_text(zombie_vs_player['initialOptions'])
-        print('\n')
-        initialChoice = input()
-        if initialChoice == '1':
-            result = FightLoop(player, zombie)
-            if result == 'dead':
-                lore_text('You died.', 0.05)
-            else:
-                lore_text(f'You killed the zombie and have {player.health()} health remaining.')
-            break
-        elif initialChoice == '2':
-            AttemptRun(player, zombie)
-            break
-        else:
-            print('Please choose either 1 or 2.')
+    result = FightLoop(player, zombie)
+    if result == 'dead':
+        lore_text('You died.', 0.05)
+    else:
+        lore_text(f'You killed the zombie and have {player.health()} health remaining.')
