@@ -1,4 +1,3 @@
-from characters.player import Player
 from .character import Character
 
 class Zombie(Character):
@@ -9,7 +8,7 @@ class Zombie(Character):
     def damageAmount(self):
         return self.__damage
     
-    def attack(self, player: Player):
+    def attack(self, player):
         player.damage(self.__damage)
     
     def __str__(self):

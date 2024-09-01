@@ -1,8 +1,8 @@
+import entityCreator
 from items.consumable import Consumable
 from items.item import Item
 from items.weapon import Weapon
 from .character import Character
-from items.itemHandler import ItemHandler
 
 class Player(Character):
     def __init__(self, name, gender, inventory, health):
@@ -12,8 +12,8 @@ class Player(Character):
         self.__inventory = [[],[]]
         for item in inventory:
             if isinstance(item, list):
-                item = ItemHandler.create_item(*item)
-                if item is not None:
+                item = entityCreator.createEntity('item', *item)
+                if item is not None and isinstance(item, Item):
                     category = item.category()
                     if category == 'weapon':
                         self.__inventory[0].append(item)
@@ -39,9 +39,9 @@ class Player(Character):
     
     def add_or_remove_item(self, item, action):
         if isinstance(item, list):
-            item = ItemHandler.create_item(*item)
+            item = entityCreator.createEntity('item', *item)
         
-        if item is not None:
+        if item is not None and isinstance(item, Item):
             if  action == 'add':
                 category = item.category()
                 if category == 'weapon':

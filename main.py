@@ -4,7 +4,8 @@ import entityCreator
 from events.zombie_player_fight import ZombieVsPlayer
 
 def main():
-    player = entityCreator.createEntity('character', category='player', health=100, name='casu martzu', gender='gender', inventory=[])
+    player = entityCreator.entityCreateText()
+    print(player)
     sword = entityCreator.createEntity('item', category='weapon', name='Sword', owner=player, weight=10, durability=100, damage=20)
     bow = entityCreator.createEntity('item', category='weapon', name='Bow', owner=player, weight=10, durability=1, damage=40)
     cake = entityCreator.createEntity('item', category='consumable', name='Cake', owner=player, weight=10, durability=1, heal=50)
