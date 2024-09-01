@@ -4,7 +4,7 @@ import entityCreator
 from events.zombie_player_fight import ZombieVsPlayer
 
 def main():
-    player = entityCreator.entityCreateText()
+    player = entityCreator.entityCreateText('player')
     print(player)
     sword = entityCreator.createEntity('item', category='weapon', name='Sword', owner=player, weight=10, durability=100, damage=20)
     bow = entityCreator.createEntity('item', category='weapon', name='Bow', owner=player, weight=10, durability=1, damage=40)

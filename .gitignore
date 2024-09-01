@@ -1,0 +1,57 @@
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+.eclipse/
+.netbeans/
+*.iml
+*.ipr
+*.iws
+
+# Ignore version control system files
+.git/
+.svn/
+.hg/
+
+# Ignore compiled and generated files
+*.class
+*.exe
+*.o
+*.obj
+*.dll
+*.so
+*.a
+*.lib
+
+# Ignore package manager files
+node_modules/
+bower_components/
+vendor/
+
+# Ignore test and log files
+Test*.class
+IT*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# Ignore documentation and wiki files
+*.md.html
+*.html
+doc/
+docs/
+wiki/
+
+# Ignore miscellaneous files
+*.tmp
+*.bak
+*.swp
+*.swo
+*.swn
+*.nfs*

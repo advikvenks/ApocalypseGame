@@ -24,6 +24,7 @@ def AttemptRun(player: Player, zombie: Zombie):
 
 def FightLoop(player: Player, zombie: Zombie):
     while True:
+        print('\n')
         lore_text(zombie_vs_player['start'])
         print('\n')
         lore_text(zombie_vs_player['initialOptions'])
