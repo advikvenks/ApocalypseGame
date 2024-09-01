@@ -17,6 +17,7 @@ Desktop.ini
 .git/
 .svn/
 .hg/
+.gitignore
 
 # Ignore compiled and generated files
 *.class
